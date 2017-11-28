@@ -1,0 +1,12 @@
+/var/log/moduleUsage.log {
+    missingok
+    notifempty
+    compress
+    size 100M
+    daily
+    dateext
+    dateformat -%Y-%m-%d_%s
+    rotate 12
+    create 644 root root 
+}
+
