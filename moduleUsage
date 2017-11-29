@@ -7,6 +7,9 @@
     dateext
     dateformat -%Y-%m-%d_%s
     rotate 12
-    create 644 root root 
+    create 644 root root
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true 
+    endscript
 }
 
