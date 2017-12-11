@@ -17,11 +17,18 @@ function load_hook(t)
 
    if (mode() ~= "load") then return end
    local user        = os.getenv("USER")
+   local grps  = capture("groups")
+   local defaultGroup = ''
+   for g in grps:split("[ \n]") do
+        defaultGroup = g
+        break
+   end
+   local group       = os.getenv("SLURM_JOB_ACCOUNT") or defaultGroup
    local jobid       = os.getenv("SLURM_JOBID") or "na"
    local host        = syshost or uname("%n")
    local currentTime = epoch()
-   local msg         = string.format("user=%s module=%s path=%s host=%s jobid=%s time=%f",
-                                     user, t.modFullName, t.fn, host, jobid, currentTime)
+   local msg         = string.format("user=%s group=%s module=%s path=%s host=%s jobid=%s time=%f",
+                                     user, group, t.modFullName, t.fn, host, jobid, currentTime)
    local a           = s_msgA
    a[#a+1]           = msg
 end
