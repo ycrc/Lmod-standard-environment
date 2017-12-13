@@ -23,6 +23,7 @@ function load_hook(t)
         defaultGroup = g
         break
    end
+   if ((defaultGroup == 'lsprog') or (defaultGroup == 'hpcprog')) then return end
    local group       = os.getenv("SLURM_JOB_ACCOUNT") or defaultGroup
    local jobid       = os.getenv("SLURM_JOBID") or "na"
    local host        = syshost or uname("%n")
