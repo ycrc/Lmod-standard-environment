@@ -8,6 +8,7 @@ Make sure to copy the appropriate cluster StdEnv.lua SitePackage.lua to the righ
 | Omega   | /apps/hpc.rhel7 |
 | Ruddle  | /gpfs/ycga/apps |
 | Grace   | /apps/hpc.rhel7 |
+| Farnam  | /gpfs/ysm/apps  |
 
 The included sample logrotate configuration, moduleUsage, should be copied to `/etc/logrotate.d/`
 
