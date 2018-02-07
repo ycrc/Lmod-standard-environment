@@ -1,7 +1,7 @@
 # Lmod-standard-environment
 standard module and module tracking
 
-Make sure to copy the appropriate cluster StdEnv.lua SitePackage.lua to the right place for each cluster:
+Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the right place for each cluster:
 
 | Cluster | Location        |
 |---------|-----------------|
