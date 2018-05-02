@@ -5,6 +5,7 @@ Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the 
 
 | Cluster | Location        |
 |---------|-----------------|
+| Farnam  | /gpfs/ysm/apps/hpc.rhel7 |
 | Omega   | /apps/hpc.rhel7 |
 | Ruddle  | /gpfs/ycga/apps |
 | Grace   | /apps/hpc.rhel7 |
