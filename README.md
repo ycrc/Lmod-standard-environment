@@ -14,3 +14,6 @@ Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the 
 The included sample logrotate configuration, moduleUsage, should be copied to `/etc/logrotate.d/` on monitor1 on Farnam.
 
 SitePackage.lua should be the same on all clusters.
+
+The Farnam & Ruddle StdEnv modules also set `LMOD_ADMIN_FILE` for [depreciating modules](https://lmod.readthedocs.io/en/latest/140_deprecating_modules.html).
+

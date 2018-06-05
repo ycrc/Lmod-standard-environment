@@ -14,4 +14,5 @@ end
 -- Add module tracking, addtl paths
 setenv ("LMOD_PACKAGE_PATH", "/gpfs/ysm/apps")
 prepend_path("PATH", "/gpfs/ysm/bin")
-
+-- File for depreciation messages
+setenv ("LMOD_ADMIN_FILE", pathJoin(rootpath,"admin.list"))
