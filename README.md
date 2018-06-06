@@ -15,5 +15,5 @@ The included sample logrotate configuration, moduleUsage, should be copied to `/
 
 SitePackage.lua should be the same on all clusters.
 
-The Farnam & Ruddle StdEnv modules also set `LMOD_ADMIN_FILE` for [depreciating modules](https://lmod.readthedocs.io/en/latest/140_deprecating_modules.html).
+The Farnam & Ruddle StdEnv modules also set `LMOD_ADMIN_FILE` for [deprecating modules](https://lmod.readthedocs.io/en/latest/140_deprecating_modules.html).
 
