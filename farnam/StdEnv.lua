@@ -13,10 +13,12 @@ end
 
 -- project & scratch env vars
 local home = os.getenv("HOME")
-local scratch = home:gsub("/home", "/gpfs/ysm/scratch60")
-setenv ("YSM_SCRATCH", scratch)
-local project = home:gsub("/home", "/gpfs/ysm/project")
-setenv ("YSM_PROJECT", project)
+if ( home ~= nil ) then
+    local scratch = home:gsub("/home", "/gpfs/ysm/scratch60")
+    setenv ("YSM_SCRATCH", scratch)
+    local project = home:gsub("/home", "/gpfs/ysm/project")
+    setenv ("YSM_PROJECT", project)
+end
 
 -- Add module tracking, addtl paths
 setenv ("LMOD_PACKAGE_PATH", "/gpfs/ysm/apps")
