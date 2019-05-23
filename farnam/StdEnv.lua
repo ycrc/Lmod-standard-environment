@@ -11,8 +11,21 @@ for i = #moduledirs, 1, -1 do
     prepend_path("MODULEPATH", pathJoin(rootpath, moduledirs[i]))
 end
 
+-- project & scratch env vars
+local home = os.getenv("HOME")
+if ( home ~= nil ) then
+    local scratch = home:gsub("/home", "/gpfs/ysm/scratch60")
+    setenv ("YSM_SCRATCH", scratch)
+    local project = home:gsub("/home", "/gpfs/ysm/project")
+    setenv ("YSM_PROJECT", project)
+end
+
 -- Add module tracking, addtl paths
 setenv ("LMOD_PACKAGE_PATH", "/gpfs/ysm/apps")
 prepend_path("PATH", "/gpfs/ysm/bin")
+
 -- File for depreciation messages
 setenv ("LMOD_ADMIN_FILE", pathJoin(rootpath,"admin.list"))
+
+-- Set default conda install directory to be in project
+prepend_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
