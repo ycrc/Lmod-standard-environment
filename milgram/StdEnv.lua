@@ -12,6 +12,7 @@ for i = #moduledirs, 1, -1 do
 end
 
 -- Standard environment variables
+setenv ("SQUEUE_FORMAT", "%18i %11P %18j %4u %.2t %.10M %.10l %.5D %.5C %.10m %R")
 prepend_path("PATH", pathJoin(os.getenv("HOME"),".ycrc/bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(os.getenv("HOME"),".ycrc/lib"))
 
@@ -25,3 +26,4 @@ setenv ("LMOD_ADMIN_FILE", pathJoin(rootpath,"admin.list"))
 -- Use module cache for loads
 setenv ("LMOD_CACHED_LOAD", "yes")
 
+prepend_path("CONDA_ENVS_PATH", pathJoin(os.getenv("HOME"), ".conda"))
