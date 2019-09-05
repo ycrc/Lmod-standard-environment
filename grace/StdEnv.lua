@@ -33,3 +33,4 @@ setenv ("LMOD_ADMIN_FILE", pathJoin("/gpfs/loomis/apps/hpc.rhel7","admin.list"))
 
 -- Set default conda install directory to be in project
 prepend_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
+prepend_path("CONDA_PKGS_DIRS", pathJoin(project, "conda_pkgs"))
