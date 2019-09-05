@@ -28,7 +28,7 @@ setenv ("YCGA_PROJECT", project)
 setenv      ("LMOD_PACKAGE_PATH", pathJoin(common_prefix, "/apps"))
 prepend_path("PATH",              pathJoin(common_prefix, "/bin" ))
 
--- File for depreciation messages
+-- File for deprecation messages
 setenv ("LMOD_ADMIN_FILE", pathJoin(rootpath,"admin.list"))
 
 -- Standard Environment Variables
