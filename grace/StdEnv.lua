@@ -32,7 +32,7 @@ prepend_path("PATH",              pathJoin(common_prefix, "/bin" ))
 setenv ("LMOD_ADMIN_FILE", pathJoin(common_prefix, "/apps/hpc.rhel7", "admin.list"))
 
 -- Standard Environment Variables
-setenv ("SQUEUE_FORMAT", "%18i %11P %18j %4u %.2t %.10M %.10l %.5D %.5C %.10m %R")
+setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R")
 
 -- For Hyperthreading protection
 setenv ("SLURM_HINT", "nomultithread")
