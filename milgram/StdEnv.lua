@@ -8,10 +8,11 @@ local moduledirs = {
     "system", "toolchain", "tools", "vis"
 }
 
-for i = #moduledirs, 1, -1 do
-    rootpath = pathJoin(rootpath, moduledirs[i])
+local modulepath = pathJoin(rootpath, moduledirs[1])
+for i = #moduledirs, 2, -1 do
+    modulepath = modulepath .. ":" .. pathJoin(rootpath, moduledirs[i])
 end
-prepend_path("MODULEPATH", rootpath)
+prepend_path("MODULEPATH", modulepath)
 
 -- project & scratch env vars
 local grps  = capture("groups")

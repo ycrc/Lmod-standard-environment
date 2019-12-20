@@ -6,9 +6,11 @@ local moduledirs = {
     "Modules.rhel6"
 }
 
-for i = #moduledirs, 1, -1 do
-    prepend_path("MODULEPATH", pathJoin(rootpath, moduledirs[i]))
+local modulepath = pathJoin(rootpath, moduledirs[1])
+for i = #moduledirs, 2, -1 do
+    modulepath = modulepath .. ":" .. pathJoin(rootpath, moduledirs[i])
 end
+prepend_path("MODULEPATH", modulepath)
 
 local home = os.getenv("HOME")
 local scratch = home:gsub("/home", "/gpfs/loomis/scratch60")
