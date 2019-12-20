@@ -7,7 +7,7 @@ local moduledirs = {
 }
 
 local modulepath = pathJoin(rootpath, moduledirs[1])
-for i = #moduledirs, 2, -1 do
+for i = 2, #moduledirs, 1 do
     modulepath = modulepath .. ":" .. pathJoin(rootpath, moduledirs[i])
 end
 prepend_path("MODULEPATH", modulepath)
