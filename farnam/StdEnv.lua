@@ -9,8 +9,9 @@ local moduledirs = {
 }
 
 for i = #moduledirs, 1, -1 do
-    prepend_path("MODULEPATH", pathJoin(rootpath, moduledirs[i]))
+    rootpath = pathJoin(rootpath, moduledirs[i])
 end
+prepend_path("MODULEPATH", rootpath)
 
 -- project & scratch env vars
 local grps  = capture("groups")
