@@ -26,6 +26,13 @@ local project = pathJoin(common_prefix, "/project",   defaultGroup, os.getenv("U
 setenv ("SCRATCH", scratch)
 setenv ("PROJECT", project)
 
+-- Standard environment variables
+setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R")
+
+-----
+-- Lmod Options
+-----
+
 -- Add module tracking, addtl paths
 setenv      ("LMOD_PACKAGE_PATH", pathJoin(common_prefix, "/apps"))
 prepend_path("PATH",              pathJoin(common_prefix, "/apps/bin"))
@@ -33,12 +40,13 @@ prepend_path("PATH",              pathJoin(common_prefix, "/apps/bin"))
 -- File for deprecation messages
 setenv ("LMOD_ADMIN_FILE", pathJoin(rootpath, "admin.list"))
 
--- Standard environment variables
-setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R")
-
 -- Use module cache for loads
 setenv ("LMOD_CACHED_LOAD", "yes")
+
+-- Make module searches sort case insensitive
+setenv ("LMOD_CASE_INDEPENDENT_SORTING", "yes")
 
 -- Set default conda install directory to be in project
 prepend_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
 prepend_path("CONDA_PKGS_DIRS", pathJoin(project, "conda_pkgs"))
+
