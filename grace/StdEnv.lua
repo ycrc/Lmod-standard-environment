@@ -26,6 +26,16 @@ local project = pathJoin(common_prefix, "/project",   defaultGroup, os.getenv("U
 setenv ("LOOMIS_SCRATCH", scratch)
 setenv ("LOOMIS_PROJECT", project)
 
+-- Standard Environment Variables
+setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R")
+
+-- For Hyperthreading protection
+setenv ("SLURM_HINT", "nomultithread")
+
+-----
+-- Lmod Options
+-----
+
 -- Add module tracking, addtl paths
 setenv      ("LMOD_PACKAGE_PATH", pathJoin(common_prefix, "/apps"))
 prepend_path("PATH",              pathJoin(common_prefix, "/bin" ))
@@ -33,11 +43,8 @@ prepend_path("PATH",              pathJoin(common_prefix, "/bin" ))
 -- File for deprecation messages
 setenv ("LMOD_ADMIN_FILE", pathJoin(common_prefix, "/apps/hpc.rhel7", "admin.list"))
 
--- Standard Environment Variables
-setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R")
-
--- For Hyperthreading protection
-setenv ("SLURM_HINT", "nomultithread")
+-- Make module searches sort case insensitive
+setenv ("LMOD_CASE_INDEPENDENT_SORTING", "yes")
 
 -- Set default conda install directory to be in project
 prepend_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
