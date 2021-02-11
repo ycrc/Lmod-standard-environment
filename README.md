@@ -3,13 +3,12 @@ standard module and module tracking
 
 Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the right place for each cluster:
 
-| Cluster | Location            |
-|---------|---------------------|
-| Farnam  | /gpfs/ysm/apps      |
-| Omega   | /apps/hpc.rhel7     |
-| Ruddle  | /gpfs/ycga/apps/hpc |
-| Grace   | /apps/hpc.rhel7     |
-| Farnam  | /gpfs/ysm/apps      |
+| Cluster | Location                     |
+|---------|------------------------------|
+| Grace   | /apps/hpc.rhel7              |
+| Farnam  | /gpfs/ysm/apps               |
+| Ruddle  | /gpfs/ycga/apps/hpc          |
+| Milgram | /gpfs/milgram/apps/hpc.rhel7 |
 
 The included sample logrotate configuration, moduleUsage, should be copied to `/etc/logrotate.d/` on monitor1 on Farnam.
 
