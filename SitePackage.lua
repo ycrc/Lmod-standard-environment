@@ -3,6 +3,7 @@ require("lmod_system_execute")
 local hook    = require("Hook")
 local uname   = require("posix").uname
 local cosmic  = require("Cosmic"):singleton()
+local FrameStk  = require("FrameStk")
 local syshost = cosmic:value("LMOD_SYSHOST")
 
 -- By using the hook.register function, this function "load_hook" is called
@@ -28,8 +29,17 @@ function load_hook(t)
    local jobid       = os.getenv("SLURM_ARRAY_JOB_ID") or os.getenv("SLURM_JOB_ID") or "na"
    local host        = syshost or uname("%n")
    local currentTime = epoch()
-   local msg         = string.format("user=%s group=%s module=%s path=%s host=%s jobid=%s time=%f",
-                                     user, group, t.modFullName, t.fn, host, jobid, currentTime)
+
+   local frameStk = FrameStk:singleton()
+   -- did the user load it or was it a dependency?
+   local userload = (frameStk:atTop()) and "yes" or "no"
+   -- the name the user used in their module load command
+   local requestedas = frameStk:userName()
+
+   local msg         = string.format("user=%s group=%s module=%s path=%s host=%s jobid=%s userload=%s requestedas=%s time=%f",
+                                     user, group, t.modFullName, t.fn, host, jobid,
+                                     userload, requestedas, currentTime)
+    
    local a           = s_msgA
    a[#a+1]           = msg
 end
