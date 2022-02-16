@@ -32,6 +32,9 @@ setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R
 -- For Hyperthreading protection
 setenv ("SLURM_HINT", "nomultithread")
 
+-- Extended History Formatting --
+setenv ("HISTTIMEFORMAT", "%Y-%m-%d %T ")
+
 -----
 -- Lmod Options
 -----
