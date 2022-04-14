@@ -46,6 +46,9 @@ setenv ("LMOD_ADMIN_FILE", pathJoin(rootpath, "admin.list"))
 -- Use module cache for loads
 setenv ("LMOD_CACHED_LOAD", "yes")
 
+-- Functionally disable user cache
+setenv ("LMOD_SHORT_TIME", 86400)
+
 -- Make module searches sort case insensitive
 setenv ("LMOD_CASE_INDEPENDENT_SORTING", "yes")
 
