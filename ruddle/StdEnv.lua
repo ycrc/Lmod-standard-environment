@@ -39,6 +39,9 @@ setenv ("HISTTIMEFORMAT", "%Y-%m-%d %T ")
 -- Lmod Options
 -----
 
+-- Functionally disable user cache
+setenv ("LMOD_SHORT_TIME", 86400)
+
 -- Add module tracking, addtl paths
 setenv      ("LMOD_PACKAGE_PATH", pathJoin(common_prefix, "/apps"))
 prepend_path("PATH",              pathJoin(common_prefix, "/bin" ))
