@@ -28,6 +28,7 @@ setenv ("YCGA_PROJECT", project)
 
 -- Standard Environment Variables
 setenv ("SQUEUE_FORMAT", "%18i %11P %18j %6u %.2t %.10M %.10l %.5D %.5C %.10m %R")
+setenv ("SALLOC_PARTITION", "interactive")
 
 -- For Hyperthreading protection
 setenv ("SLURM_HINT", "nomultithread")
