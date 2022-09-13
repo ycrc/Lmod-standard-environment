@@ -25,7 +25,7 @@ local scratch = pathJoin(common_prefix, "/scratch60", defaultGroup, os.getenv("U
 local project = pathJoin("/gpfs/gibbs", "/project",   defaultGroup, os.getenv("USER"))
 local palmer_scratch = pathJoin("/vast/palmer/scratch", defaultGroup, os.getenv("USER"))
 setenv ("LOOMIS_SCRATCH", scratch)
-setenv ("LOOMIS_PROJECT", project)
+setenv ("GIBBS_PROJECT", project)
 setenv ("PALMER_SCRATCH", palmer_scratch)
 
 -- Standard Environment Variables
