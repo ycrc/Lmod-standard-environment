@@ -46,7 +46,7 @@ setenv ("LMOD_SHORT_TIME", 86400)
 
 -- Add module tracking, addtl paths
 setenv      ("LMOD_PACKAGE_PATH", "/vast/palmer/apps/avx.grace")
-prepend_path("PATH",              pathJoin(common_prefix, "/bin" ))
+prepend_path("PATH",              "/gpfs/gibbs/public/bin")
 
 -- File for deprecation messages
 setenv ("LMOD_ADMIN_FILE", pathJoin("/vast/palmer/apps/avx.grace", "admin.list"))
