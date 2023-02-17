@@ -6,7 +6,7 @@ Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the 
 | Cluster  | Location                     |
 |----------|------------------------------|
 | Grace    | /gpfs/lommis/apps/hpc.rhel7 / /vast/palmer/apps/avx.grace|
-| McCleary | /vast/palmer/apps/avx2.      |
+| McCleary | /vast/palmer/apps/avx2       |
 | Farnam   | /gpfs/ysm/apps               |
 | Ruddle   | /gpfs/ycga/apps/hpc          |
 | Milgram  | /gpfs/milgram/apps/hpc.rhel7 |
