@@ -11,9 +11,8 @@ Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the 
 | Ruddle   | /gpfs/ycga/apps/hpc          |
 | Milgram  | /gpfs/milgram/apps/hpc.rhel7 |
 
-The included sample logrotate configuration, moduleUsage, should be copied to `/etc/logrotate.d/` on monitor1 on Farnam.
 
 SitePackage.lua should be the same on all clusters.
 
-The Farnam & Ruddle StdEnv modules also set `LMOD_ADMIN_FILE` for [deprecating modules](https://lmod.readthedocs.io/en/latest/140_deprecating_modules.html).
+The StdEnv modules also set `LMOD_ADMIN_FILE` for [deprecating modules](https://lmod.readthedocs.io/en/latest/140_deprecating_modules.html).
 
