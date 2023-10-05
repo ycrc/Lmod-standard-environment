@@ -30,13 +30,15 @@ setenv ("GIBBS_PROJECT", project)
 -- Standard Environment Variables
 setenv ("SQUEUE_FORMAT", "%.18i %.9P %.8j %.8u %.9a %.2t %.16V %.10M %.10l %.5D %.5C %.10m %.10b %.10f %.10p %R")
 setenv ("SACCT_FORMAT", "jobname,jobid,JobIDRaw,user,account,partition,Start,End,Elapsed,MaxVM,AveVM,ReqMem,NNodes,NTasks,NCPUS,ReqTres,ExitCode,State,NodeList")
-setenv ("OMPI_MCA_oob_tcp_if_include", "10.178.0.0/16")
+setenv ("OMPI_MCA_btl_tcp_if_include", "cluster")
+setenv ("OMPI_MCA_oob_tcp_if_include", "cluster")
+setenv ("UCX_NET_DEVICES", "cluster")
 
 -- For Hyperthreading protection
 setenv ("SLURM_HINT", "nomultithread")
 
 -- Set default to interactive partition
-setenv ("SALLOC_PARTITION", "interactive")
+setenv ("SALLOC_PARTITION", "devel")
 
 -- Enable hist file time formats
 setenv ("HISTTIMEFORMAT", "%Y-%m-%d %T ")
@@ -53,12 +55,17 @@ setenv ("LMOD_ADMIN_FILE", pathJoin(vast_prefix, "/apps/avx2", "admin.list"))
 -- Make module searches sort case insensitive
 setenv ("LMOD_CASE_INDEPENDENT_SORTING", "yes")
 
--- Set default conda install directory to be in project
-prepend_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
-prepend_path("CONDA_PKGS_DIRS", pathJoin(project, "conda_pkgs"))
+-- Set default conda install directory to be in home, with project fall-back for envs
+local home = os.getenv("HOME")
+prepend_path("CONDA_ENVS_PATH", pathJoin(home, ".conda/envs"))
+append_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
+setenv("CONDA_PKGS_DIRS",  pathJoin(home, ".conda/pkgs"))
 
 -- User Scripts
 prepend_path("PATH",              pathJoin(vast_prefix, "/apps/bin" ))
+
+-- set default XDG_DATA_DIR
+append_path('XDG_DATA_DIRS', '/usr/local/share:/usr/share')
 
 -- Export clustername
 setenv ("CLUSTER", "mccleary")
