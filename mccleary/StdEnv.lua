@@ -16,7 +16,7 @@ end
 prepend_path("MODULEPATH", modulepath)
 
 -- project & scratch env vars
-local grps  = capture("groups")
+local grps = capture("groups")
 local defaultGroup = ''
 for g in grps:split("[ \n]") do
     defaultGroup = g
