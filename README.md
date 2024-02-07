@@ -5,11 +5,9 @@ Make sure to copy the appropriate cluster StdEnv.lua and SitePackage.lua to the 
 
 | Cluster  | Location                     |
 |----------|------------------------------|
-| Grace    | /gpfs/loomis/apps/hpc.rhel7 (/vast/palmer/apps/avx.grace)|
-| McCleary | /vast/palmer/apps/avx2       |
-| Farnam   | /gpfs/ysm/apps               |
-| Ruddle   | /gpfs/ycga/apps/hpc          |
-| Milgram  | /gpfs/milgram/apps/hpc.rhel7 |
+| Grace    | /vast/palmer/apps/avx2/StdEnv.grace.lua|
+| McCleary | /vast/palmer/apps/avx2/StdEnv.mccleary.lua|
+| Milgram  |  /gpfs/milgram/apps/hpc/StdEnv.milgram.lua|
 
 
 SitePackage.lua should be the same on all clusters.

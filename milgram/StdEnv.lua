@@ -60,3 +60,7 @@ setenv ("LMOD_CASE_INDEPENDENT_SORTING", "yes")
 prepend_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
 prepend_path("CONDA_PKGS_DIRS", pathJoin(project, "conda_pkgs"))
 
+-- use "cluster" interface
+setenv("OMPI_MCA_btl_tcp_if_include","cluster")
+setenv("OMPI_MCA_oob_tcp_if_include","cluster")
+setenv("UCX_NET_DEVICES","cluster")
