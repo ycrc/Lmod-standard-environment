@@ -1,90 +1,60 @@
 add_property("lmod", "sticky")
 
--- Set module path
--- avx2 modules (RHEL8)
-local vast_prefix = "/vast/palmer"
-local gpfs_prefix = "/gpfs/gibbs"
-local rootpath = pathJoin(vast_prefix, "/apps/avx2/modules")
-local moduledirs = {
-    "base", "bio", "cae", "chem", "compiler", "data", "debugger", "devel",
-    "geo", "ide", "lang", "lib", "math", "mpi", "numlib", "perf", "phys",
-    "system", "toolchain", "tools", "vis", "restricted"
-}
+local cluster = os.getenv("CLUSTER")
+local home = os.getenv("HOME")
+local user = os.getenv("USER")
 
-local modulepath = pathJoin(rootpath, moduledirs[1])
-for i = 2, #moduledirs, 1 do
-    modulepath = modulepath .. ":" .. pathJoin(rootpath, moduledirs[i])
-end
-prepend_path("MODULEPATH", modulepath)
+-- Available disks
+local palmer_prefix = "/vast/palmer"
+local gibbs_prefix = "/gpfs/gibbs"
 
--- avx modules (RHEL7)
-
-local loomis_prefix = "/gpfs/loomis"
-local rootpath = pathJoin(loomis_prefix, "/apps/avx/modules")
-local moduledirs = {
-    "base", "bio", "cae", "chem", "compiler", "data", "debugger", "devel",
-    "geo", "ide", "lang", "lib", "math", "mpi", "numlib", "perf", "phys",
-    "system", "toolchain", "tools", "vis", "restricted"
-}
-
-local modulepath = pathJoin(rootpath, moduledirs[1])
-for i = 2, #moduledirs, 1 do
-    modulepath = modulepath .. ":" .. pathJoin(rootpath, moduledirs[i])
-end
-append_path("MODULEPATH", modulepath)
-
--- project & scratch env vars
-local grps  = capture("groups")
-local defaultGroup = ''
+-- Project & Scratch
+local grps = capture("groups")
+local defaultGroup = ""
 for g in grps:split("[ \n]") do
     defaultGroup = g
     break
 end
-local scratch = pathJoin(vast_prefix, "/scratch", defaultGroup, os.getenv("USER"))
-local project = pathJoin(gpfs_prefix, "/project", defaultGroup, os.getenv("USER"))
-setenv ("PALMER_SCRATCH", scratch)
-setenv ("GIBBS_PROJECT", project)
+local scratch = pathJoin(palmer_prefix, "/scratch", defaultGroup, user)
+local project = pathJoin(gibbs_prefix, "/project", defaultGroup, user)
+setenv("PALMER_SCRATCH", scratch)
+setenv("GIBBS_PROJECT", project)
 
+----
 -- Standard Environment Variables
-setenv ("SQUEUE_FORMAT", "%.18i %.9P %.8j %.8u %.9a %.2t %.16V %.10M %.10l %.5D %.5C %.10m %.10b %.10f %.10p %R")
-setenv ("SACCT_FORMAT", "jobname,jobid,JobIDRaw,user,account,partition,Start,End,Elapsed,MaxVM,AveVM,ReqMem,NNodes,NTasks,NCPUS,ReqTres,ExitCode,State,NodeList")
-setenv ("OMPI_MCA_oob_tcp_if_include", "10.181.0.0/16")
+----
 
--- For Hyperthreading protection
-setenv ("SLURM_HINT", "nomultithread")
+-- User Scripts
+prepend_path("PATH", "/apps/bin")
+
+-- Slurm
+setenv("SQUEUE_FORMAT", "%.18i %.9P %.8j %.8u %.9a %.2t %.16V %.10M %.10l %.5D %.5C %.10m %.10b %.10f %.10p %R")
+setenv("SACCT_FORMAT", "jobname,jobid,JobIDRaw,user,account,partition,Start,End,Elapsed,MaxVM,AveVM,ReqMem,NNodes,NTasks,NCPUS,ReqTres,ExitCode,State,NodeList")
+
+-- Hyperthreading protection
+setenv("SLURM_HINT", "nomultithread")
 
 -- Set default to interactive partition
-setenv ("SALLOC_PARTITION", "devel")
+setenv("SALLOC_PARTITION", "devel")
 
--- Enable hist file time formats
-setenv ("HISTTIMEFORMAT", "%Y-%m-%d %T ")
------
--- Lmod Options
------
+-- Enable hist file time format
+setenv("HISTTIMEFORMAT", "%Y-%m-%d %T ")
 
--- Add module tracking, addtl paths
-setenv ("LMOD_PACKAGE_PATH", pathJoin(vast_prefix, "/apps/avx2/"))
-
--- File for deprecation messages
-setenv ("LMOD_ADMIN_FILE", pathJoin(vast_prefix, "/apps/avx2", "admin.list"))
-
--- Make module searches sort case insensitive
-setenv ("LMOD_CASE_INDEPENDENT_SORTING", "yes")
+-- set default XDG_DATA_DIR
+append_path("XDG_DATA_DIRS", "/usr/local/share:/usr/share")
 
 -- Set default conda install directory to be in home, with project fall-back for envs
-local home = os.getenv("HOME")
 prepend_path("CONDA_ENVS_PATH", pathJoin(home, ".conda/envs"))
 append_path("CONDA_ENVS_PATH", pathJoin(project, "conda_envs"))
 setenv("CONDA_PKGS_DIRS",  pathJoin(home, ".conda/pkgs"))
 
--- User Scripts
-prepend_path("PATH",              pathJoin(vast_prefix, "/apps/bin" ))
+-- MPI
+setenv("OMPI_MCA_oob_tcp_if_include", "cluster")
 
--- Slurm Path for RHEL7/8 change
-append_path('PATH', "/opt/slurm/current/bin")
+if (cluster == "mccleary") then
+    setenv("OMPI_MCA_btl_tcp_if_include", "cluster")
+    setenv("UCX_NET_DEVICES", "cluster")
+end
 
--- set default path for XDG to be non-empty
-append_path('XDG_DATA_DIRS', '/usr/local/share:/usr/share')
-
--- Export clustername
-setenv ("CLUSTER", "grace")
+-- default browser
+setenv("BROWSER", "/apps/bin/firefox")
